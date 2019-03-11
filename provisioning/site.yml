@@ -1,0 +1,9 @@
+---
+# This playbook sets up whole stack.
+ 
+- name: Configurations to "remote" host
+  hosts: rock
+  remote_user: rock64 # Remote user
+  become: yes
+  roles:
+    - setup
