@@ -1,0 +1,12 @@
+- name: add user 'ben' and add to group 'docker'
+  user:
+    name: ben
+    group: ben
+    groups: docker
+    append: yes
+
+- name: make .ssh directory
+    file:
+    path: /home/ben/.ssh
+    owner: ben
+    group: ben
