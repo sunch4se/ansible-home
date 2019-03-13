@@ -1,0 +1,11 @@
+- name: configure local network
+- hosts: rock
+  remote_user: rock64
+  tasks:
+  - nmcli:
+    conn_name: eth0:1
+    ifname: eth0:1
+    type: ethernet
+    ip4: 192.168.188.240/24
+    gw4: 192.168.188.1
+    state: present
