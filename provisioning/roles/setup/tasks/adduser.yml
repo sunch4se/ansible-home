@@ -17,5 +17,5 @@
   authorized_key:
     user: ben
     state: present
-    key: "{{ lookup('file', '~/ansible/provisioning/files/authorized_keys') }}"
-    path: /home/ben/.ssh/authorized_keys
+    key: "{{ lookup('file', '~//ansible/provisioning/files/authorized_keys') }}"
+  tags: authorized_keys
