@@ -1,12 +1,21 @@
+- name: add group 'ben'
+  group:
+    name: ben
+    gid: 1002
+    state: present
+
 - name: add user 'ben' and add to group 'docker'
   user:
     name: ben
+    shell: /usr/bin/zsh
+    uid: 1002
     group: ben
-    groups: docker
+    groups: docker,sudo
     append: yes
 
-- name: make .ssh directory
-    file:
-    path: /home/ben/.ssh
-    owner: ben
-    group: ben
+- name: add authorized keys
+  authorized_key:
+    user: ben
+    state: present
+    key: "{{ lookup('file', '~/ansible/provisioning/files/authorized_keys') }}"
+    path: /home/ben/.ssh/authorized_keys

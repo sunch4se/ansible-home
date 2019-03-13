@@ -1,0 +1,15 @@
+- name: Install apps
+  apt:
+    name: "{{ apps }}"
+    update_cache: yes
+  vars:
+    apps:
+    - vim
+    - zsh
+    - curl
+
+- name: Execute the command in remote shell; stdout goes to the specified file on the remote.
+  shell: set timeout 60 && su ben -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  become: yes
+  become_user: root
+
