@@ -1,6 +1,12 @@
 - name: add group 'ben'
   group:
     name: ben
+    gid: 1001
+    state: present
+
+- name: add group 'media'
+  group:
+    name: media
     gid: 1002
     state: present
 
@@ -8,11 +14,18 @@
   user:
     name: ben
     shell: /usr/bin/zsh
-    uid: 1002
+    uid: 1001
     group: ben
-    groups: docker,sudo
+    groups: docker,sudo,media
     append: yes
 
+- name: add user 'media'
+  user:
+    name: media
+    uid: 1002
+    group: media
+    append: yes
+  
 - name: add authorized keys
   authorized_key:
     user: ben
