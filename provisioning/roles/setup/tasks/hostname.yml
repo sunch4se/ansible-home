@@ -1,6 +1,6 @@
 - name: change hostname to 'rock'
   hostname:
-    name: "rock"
+    name: "rock.eth0.zone"
 
 - name: add myself to /etc/hosts
   lineinfile:

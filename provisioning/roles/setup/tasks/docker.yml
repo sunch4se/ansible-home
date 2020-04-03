@@ -67,3 +67,9 @@
     update_cache: yes
   tags:
     - docker
+
+- name: Create a network
+  docker_network:
+    name: web
+  tags:
+    - docker

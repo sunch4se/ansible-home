@@ -12,14 +12,14 @@
 - name: set hostname
   include_tasks: hostname.yml
 
+- name: add users
+  include_tasks: adduser.yml
+
 - name: install apps
   include_tasks: apps.yml
 
 - name: import docker tasks 
   include_tasks: docker.yml
-
-- name: add users
-  include_tasks: adduser.yml
 
 - name: add files and folder
   include_tasks: files.yml
