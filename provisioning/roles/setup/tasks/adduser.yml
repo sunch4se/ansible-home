@@ -30,5 +30,5 @@
   authorized_key:
     user: ben
     state: present
-    key: "{{ lookup('file', '~//ansible/provisioning/files/authorized_keys') }}"
+    key: "{{ lookup('file', '~//code/ansible/provisioning/files/authorized_keys') }}"
   tags: authorized_keys

@@ -29,3 +29,5 @@
     fstype: btrfs
     opts: noatime
     state: mounted
+  tags:
+    - ssd

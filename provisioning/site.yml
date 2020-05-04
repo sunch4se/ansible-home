@@ -7,3 +7,10 @@
   become: yes
   roles:
     - setup
+
+- name: Configuration on host "odroid.eth0.zone"
+  hosts: odroid.eth0.zone
+  remote_user: ben # Remote user
+  become: yes
+  roles:
+    - setup

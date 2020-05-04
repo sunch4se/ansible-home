@@ -1,15 +1,14 @@
-- name: change hostname to 'rock'
+---
+- name: change hostname
   hostname:
-    name: "rock.eth0.zone"
+    name: '{{ shortname }}'
+  tags:
+    - hostname
 
-- name: add myself to /etc/hosts
+- name: add valid IP and name to /etc/hosts
   lineinfile:
     dest: /etc/hosts
-    regexp: '^127\.0\.0\.1[ \t]+localhost'
-    line: '127.0.0.1 localhost rock'
-    state: present
-- name: add valid IP to /etc/hosts
-  lineinfile:
-    dest: /etc/hosts
-    line: '192.168.188.210 rock rock.eth0.zone'
+    line: '{{ ip }} {{ fqdn }} {{ shortname }}'
     create: yes
+  tags:
+     - hostname
