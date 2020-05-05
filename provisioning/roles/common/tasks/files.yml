@@ -1,0 +1,70 @@
+- name: mkdir /ssd
+  file:
+    path: /ssd
+    state: directory
+    owner: media
+    group: media
+
+- name: mkdir /backup
+  file:
+    path: /backup
+    state: directory
+    owner: media
+    group: media
+ 
+- name: mkdir /docker
+  file:
+    path: /docker
+    state: directory
+    owner: ben
+    group: ben
+
+- name: mkdir /docker/config
+  file:
+    path: /docker/config
+    state: directory
+    owner: media
+    group: media
+    mode: 0775
+  register: mkdir_docker_config
+
+- name: Sets default ACL for media on /docker/config
+  acl:
+    path: /docker/config/
+    entity: media
+    etype: group
+    permissions: rwx
+    default: yes
+    recursive: yes
+    state: present
+  when: mkdir_docker_config is succeeded
+
+- name: synchronize docker container config
+  include_tasks: synchronize.yml
+  tags:
+    - synch
+
+- name: mkdir /docker/docker-compose
+  file:
+    path: /docker/docker-compose
+    state: directory
+    owner: ben
+    group: ben
+  register: mkdir_compose
+
+- name: Cloning docker-compose git repo
+  git:
+    repo=https://github.com/sunch4se/docker-compose
+    dest=/docker/docker-compose/
+  when: mkdir_compose is succeeded
+  become_user: ben
+
+- name: Mount SSD
+  mount:
+    path: /ssd
+    src: UUID=1a3729cd-0a9f-4538-85e7-3a6caa0326a6
+    fstype: btrfs
+    opts: noatime
+    state: mounted
+  tags:
+    - ssd

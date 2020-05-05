@@ -16,7 +16,7 @@
     shell: /usr/bin/zsh
     uid: 1001
     group: ben
-    groups: docker,sudo,media
+    groups: sudo,media
     append: yes
 
 - name: add user 'media'

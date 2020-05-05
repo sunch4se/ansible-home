@@ -10,24 +10,33 @@
     - system
 
 # Import tasks
+- name: Set timezone to Europe/Berlin
+  timezone:
+    name: Europe/Berlin
+  tags:
+    - timezone
+
 - name: set hostname
   include_tasks: hostname.yml
   tags:
     - hostname
 
+- name: add users
+  include_tasks: adduser.yml
+
 - name: install apps
   include_tasks: apps.yml
+  tags:
+    - install_apps
 
 - name: import docker tasks 
   include_tasks: docker.yml
-
-- name: add users
-  include_tasks: adduser.yml
 
 - name: add files and folder
   include_tasks: files.yml
   tags:
     - ssd
+    - synch
 
 # sudo apt-get autoclean
 - name: Remove useless apt packages from the cache

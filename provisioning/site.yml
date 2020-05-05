@@ -6,11 +6,11 @@
   remote_user: rock64 # Remote user
   become: yes
   roles:
-    - setup
+    - common
 
 - name: Configuration on host "odroid.eth0.zone"
   hosts: odroid.eth0.zone
-  remote_user: ben # Remote user
+  remote_user: ansible # Remote user
   become: yes
   roles:
-    - setup
+    - common

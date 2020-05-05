@@ -1,0 +1,25 @@
+---
+- name: Installing Zsh and git
+  apt: pkg=acl,vim,zsh,git,curl,nfs-common state=latest
+  register: installation
+  tags:
+    - install_apps
+
+- name: Cloning oh-my-zsh for ben
+  git:
+    repo=https://github.com/sunch4se/oh-my-zsh
+    dest=~/.oh-my-zsh
+  register: cloned
+  become_user: ben
+  tags:
+    - install_apps
+
+- name: Create a symbolic link
+  file:
+    src: ~/.oh-my-zsh/.zshrc
+    dest: ~/.zshrc
+    state: link
+  when: cloned is succeeded
+  become_user: ben
+  tags:
+    - install_apps

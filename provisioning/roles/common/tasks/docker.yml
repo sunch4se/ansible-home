@@ -30,7 +30,7 @@
   tags:
     - docker
  
-# sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
+# sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
 - name: Set up the stable repository
   apt_repository:
     repo: deb [arch=arm64] https://download.docker.com/linux/ubuntu bionic stable
@@ -73,3 +73,9 @@
     name: web
   tags:
     - docker
+
+- name: add user 'ben' and add to group 'docker'
+  user:
+    name: ben
+    groups: docker
+    append: yes
