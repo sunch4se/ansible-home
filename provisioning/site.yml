@@ -1,12 +1,12 @@
 ---
 # This playbook sets up whole stack.
  
-- name: Configuration on host "rock.eth0.zone"
-  hosts: rock.eth0.zone
-  remote_user: rock64 # Remote user
-  become: yes
-  roles:
-    - common
+# - name: Configuration on host "rock.eth0.zone"
+#   hosts: rock.eth0.zone
+#   remote_user: rock64 # Remote user
+#   become: yes
+#   roles:
+#     - common
 
 - name: Configuration on host "odroid.eth0.zone"
   hosts: odroid.eth0.zone

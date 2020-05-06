@@ -3,8 +3,6 @@
   wakeonlan:
     mac: 00:11:32:51:85:CD
     broadcast: 192.168.188.255
-  # delegate_to: localhost
-  # become: yes
   tags:
     - synch
 
@@ -16,18 +14,22 @@
 - name: mount external nfs target
   mount:
     path: /backup
-    src: nas.fritz.box:/volume1/homes/ben/backup/
+    src: 'nas.fritz.box:/volume1/homes/ben/backup/{{ shortname }}'
     fstype: nfs
     state: mounted
+  register: nfs_mount
   tags:
     - synch
 
 - name: synchronize container backup to local filesystem
   synchronize:
-    src: /backup/{{ shortname }}/docker/config/
+    src: /backup/docker/config/
     dest: /docker/config/
     archive: yes
-  delegate_to: odroid.eth0.zone
+    # delete: yes
+  delegate_to: '{{ fqdn }}'
+  when: nfs_mount is succeeded
+  register: synch_complete
   tags:
     - synch
 
@@ -37,5 +39,6 @@
     src: nas.fritz.box:/volume1/homes/ben/backup/
     fstype: nfs
     state: unmounted
+  when: synch_complete is succeeded
   tags:
     - synch

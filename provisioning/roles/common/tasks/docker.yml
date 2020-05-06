@@ -79,3 +79,8 @@
     name: ben
     groups: docker
     append: yes
+
+- name: start container with docker-compose
+  include_tasks: containers.yml
+  tags:
+    - compose

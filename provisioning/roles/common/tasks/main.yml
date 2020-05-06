@@ -31,6 +31,8 @@
 
 - name: import docker tasks 
   include_tasks: docker.yml
+  tags:
+    - compose
 
 - name: add files and folder
   include_tasks: files.yml
