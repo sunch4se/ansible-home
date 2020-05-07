@@ -1,2 +1,20 @@
 ---
-- name: cron-job for container backup
+- name: Copy file backup script to target
+  copy:
+    src: /Users/ben/code/ansible/provisioning/files/backup.sh
+    dest: /usr/local/bin/
+    owner: ben
+    group: media
+    mode: '0744'
+  tags:
+    - backup
+
+- name: create cron-job for 16:00
+  cron:
+    name: "create container backup"
+    minute: "0"
+    hour: "16"
+    job: "/usr/local/bin/backup.sh > /dev/null"
+    user: ben
+  tags:
+    - backup

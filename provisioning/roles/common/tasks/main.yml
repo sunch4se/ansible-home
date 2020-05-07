@@ -40,6 +40,11 @@
     - ssd
     - synch
 
+- name: create cron-job for backup to nas
+  include_tasks: backup.yml
+  tags:
+    - backup
+
 # sudo apt-get autoclean
 - name: Remove useless apt packages from the cache
   apt:
