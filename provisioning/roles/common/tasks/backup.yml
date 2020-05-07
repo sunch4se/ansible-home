@@ -9,10 +9,10 @@
   tags:
     - backup
 
-- name: create cron-job for 16:00
+- name: create cron-job for 16:15
   cron:
     name: "create container backup"
-    minute: "0"
+    minute: "15"
     hour: "16"
     job: "/usr/local/bin/backup.sh > /dev/null"
     user: ben

@@ -1,6 +1,6 @@
 ---
 - name: Installing Zsh and git
-  apt: pkg=acl,vim,zsh,git,curl,nfs-common state=latest
+  apt: pkg=acl,vim,zsh,git,curl,nfs-common,wakeonlan state=latest
   register: installation
   tags:
     - install_apps

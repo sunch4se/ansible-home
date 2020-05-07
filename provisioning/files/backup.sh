@@ -1,5 +1,8 @@
 #!/bin/sh
 
+### wake up nas
+/usr/bin/wakeonlan 00:11:32:51:85:CD
+
 ### wait for nas.fritz.box to be reachable
 until ping -c1 nas.fritz.box >/dev/null 2>&1; do :; done
 
