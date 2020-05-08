@@ -2,7 +2,7 @@
 - name: Send magic Wake-On-Lan packet to turn on individual systems
   wakeonlan:
     mac: 00:11:32:51:85:CD
-    broadcast: 192.168.188.255
+    broadcast: 255.255.255.255
   tags:
     - synch
 
