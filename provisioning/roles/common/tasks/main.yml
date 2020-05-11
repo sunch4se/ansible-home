@@ -29,16 +29,16 @@
   tags:
     - install_apps
 
-- name: import docker tasks 
-  include_tasks: docker.yml
-  tags:
-    - compose
-
 - name: add files and folder
   include_tasks: files.yml
   tags:
     - ssd
     - synch
+
+- name: import docker tasks 
+  include_tasks: docker.yml
+  tags:
+    - compose
 
 - name: create cron-job for backup to nas
   include_tasks: backup.yml

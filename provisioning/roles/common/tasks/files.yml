@@ -52,6 +52,14 @@
     group: ben
   register: mkdir_compose
 
+- name: copy .env file to traefik folder
+  copy:
+    src: /Users/ben/code/ansible/provisioning/files/.env
+    dest: /docker/docker-compose/traefik
+    owner: ben
+    group: ben
+    mode: '0664'
+
 - name: Cloning docker-compose git repo
   git:
     repo=https://github.com/sunch4se/docker-compose
