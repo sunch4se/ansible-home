@@ -10,7 +10,7 @@ until ping -c1 nas.fritz.box >/dev/null 2>&1; do :; done
 /usr/bin/sudo /bin/mount /backup
 
 ### synch /docker/config to nas
-sudo /usr/bin/rsync -avh --delete /docker/config/ /backup/docker/config/
+sudo /usr/bin/rsync --stats -ah --delete /docker/config/ /backup/docker/config/ | /usr/local/bin/telegram-send --stdin
 
 ### synch .env file for traefik docker
 sudo /usr/bin/rsync -avh /docker/docker-compose/traefik/.env /backup/docker/docker-compose/traefik/
