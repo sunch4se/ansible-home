@@ -1,7 +1,6 @@
 #!/bin/sh
 
 BACKUPLOG=/tmp/backuplog
-DATE=`date +%F`
 
 ### wake up nas
 /usr/bin/wakeonlan 00:11:32:51:85:CD
@@ -16,7 +15,7 @@ until ping -c1 nas.fritz.box >/dev/null 2>&1; do :; done
 /usr/bin/sudo /usr/bin/rsync --stats -ah --delete /docker/config/ /backup/docker/config/ > /tmp/backuplog
 
 ### telegram send
-/usr/bin/sed -i '1s/^/***** BACKUP COMPLETED *****\n\nDate: $DATE\n\n/' /tmp/backuplog
+/usr/bin/sed -i '1s/^/***** BACKUP COMPLETED *****\n/' /tmp/backuplog
 /usr/bin/printf "\n***** BACKUP COMPLETED *****" >> /tmp/backuplog
 /usr/bin/cat $BACKUPLOG | /usr/local/bin/telegram-send --stdin
 
