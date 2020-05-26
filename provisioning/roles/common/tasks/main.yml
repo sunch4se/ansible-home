@@ -40,6 +40,13 @@
   tags:
     - compose
 
+- name: iptables forward chain to ACCEPT
+  iptables:
+    chain: FORWARD
+    policy: ACCEPT
+  tags:
+    - iptables
+
 - name: create cron-job for backup to nas
   include_tasks: backup.yml
   tags:
