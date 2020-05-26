@@ -1,5 +1,5 @@
 ---
-- name: Installing Zsh and git
+- name: Installing apps
   apt: pkg=acl,vim,zsh,git,curl,nfs-common,wakeonlan,python3-pip,libffi-dev,python3-dev state=latest
   register: installation
   tags:
