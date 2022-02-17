@@ -1,7 +1,14 @@
 ---
-- name: start emby
+- name: start traefik
   docker_compose:
-    project_src: /docker/docker-compose/emby
+    project_src: /docker/docker-compose/traefik
+  register: output
+  tags:
+    - compose
+
+- name: start jellyfin
+  docker_compose:
+    project_src: /docker/docker-compose/jellyfin
   register: output
   tags:
     - compose
@@ -20,23 +27,9 @@
   tags:
     - compose
 
-- name: start traefik
-  docker_compose:
-    project_src: /docker/docker-compose/traefik
-  register: output
-  tags:
-    - compose
-
 - name: start tvheadend
   docker_compose:
     project_src: /docker/docker-compose/tvheadend
-  register: output
-  tags:
-    - compose
-
-- name: start ddclient
-  docker_compose:
-    project_src: /docker/docker-compose/ddclient
   register: output
   tags:
     - compose

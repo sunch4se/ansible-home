@@ -59,13 +59,13 @@
   when: mkdir_compose is succeeded
   become_user: ben
 
-- name: copy .env file to traefik folder
-  copy:
-    src: /Users/ben/code/ansible/provisioning/files/.env
-    dest: /docker/docker-compose/traefik/.env
-    owner: ben
-    group: ben
-    mode: '0664'
+# - name: copy .env file to traefik folder
+#   copy:
+#     src: /Users/ben/code/ansible/provisioning/files/.env
+#     dest: /docker/docker-compose/traefik/.env
+#     owner: ben
+#     group: ben
+#     mode: '0664'
 
 - name: Mount SSD
   mount:
