@@ -33,3 +33,17 @@
   register: output
   tags:
     - compose
+
+- name: start mosquitto
+  docker_compose:
+    project_src: /docker/docker-compose/mosquitto
+  register: output
+  tags:
+    - compose
+
+- name: start home-assistant
+  docker_compose:
+    project_src: /docker/docker-compose/hass
+  register: output
+  tags:
+    - compose
